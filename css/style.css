@@ -1,0 +1,160 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	height: 100%;
+	margin: 0;
+}
+
+.chat-header {
+	display: flex;
+	height: 60px;
+	box-shadow: 0px 0px 15px 4px #0000009c;
+}
+
+.chat-header img {
+	max-width: 300px;
+	width: 100%;
+	height: 46px;
+	padding-top: 14px;
+	padding-left: 12px;
+}
+
+.main-container {
+	display: flex;
+	justify-content: space-between;
+	width: 87%;
+	height: 500px;
+	margin: 40px auto;
+}
+
+#aside {
+	display: flex;
+	justify-content: flex-start;
+	width: 33%;
+	border-left: 2px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	box-shadow: 0px 2px 1px 1px #00000029;
+	height: 500px;
+}
+
+#main-content {
+	display: flex;
+	flex-direction: column;
+	width: 67%;
+	border-left: 2px solid #eee;
+	border-bottom: 2px solid #eee; 
+	height: 500px;
+	background: #eee;
+	position: relative;
+}
+
+.input {
+	display: flex;
+	height: 40px;
+	position: absolute;
+	top: 93%;
+	background: #068ccd;
+	width: 100%;
+}
+
+input[type=text] {
+	height: 25px;
+	margin-left: 20px;
+	width: 88%;
+	margin-right: 5px;
+	margin-top: 8px;
+	border-radius: 5px 0px 0px 5px;
+}
+
+#text-message {
+	
+}
+
+button[type=button] {
+	border: 1px solid white;
+	color: #068ccd;
+	height: 25px;
+	align-items: center;
+	margin-top: 8px;
+	margin-right: 46px;
+	width: 45px;
+	border-radius: 0px 3px 3px 0px;
+	font-size: 11px;
+	font-weight: 800;
+	background: white;
+}
+
+/*Footer*/
+
+.page-footer {
+	color: gray;
+	background: #000000cf;
+}
+
+.container {
+	width: 87%;
+}
+
+.py-4 {
+	border-bottom: 1px solid gray;
+}
+
+a {
+	color: gray;
+}
+
+hr {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+}
+
+.mx-auto-1 {
+	margin-right: auto!important;
+}
+
+p {
+	margin-left: -12px;
+}
+
+.fa-facebook {
+	border: 1px solid gray;
+	border-radius: 50%;
+	padding: 5px 9px 5px 8px;
+	margin-right: 2px;
+	cursor: pointer;
+}
+
+.fa-twitter {
+	border: 1px solid gray;
+	border-radius: 50%;
+	padding: 5px 6px 5px 6px;
+	margin-right: 2px;
+	cursor: pointer;
+}
+
+.fa-linkedin {
+	border: 1px solid gray;
+	border-radius: 50%;
+	padding: 5px 7px 5px 7px;
+	margin-right: 2px;
+	cursor: pointer;
+}
+
+.fa-google-plus {
+	border: 1px solid gray;
+	border-radius: 50%;
+	padding: 5px 4px 5px 4px;
+	cursor: pointer;
+}
+
+.fa-google-plus:hover,
+.fa-linkedin:hover,
+.fa-twitter:hover,
+.fa-facebook:hover {
+	background: silver;
+}
+
+h6 {
+	font-weight: 700;
+	margin: 15px;
+}

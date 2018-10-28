@@ -1,0 +1,125 @@
+[
+  {
+    "name": "John",
+    "status": "This is my status",
+    "messages": [
+      {
+        "time": 1508000399,
+        "content": "Hi whats your name?",
+        "type": "sent"
+      },
+      {
+        "time": 1508001399,
+        "content": "My name is Adam",
+        "type": "received"
+      },
+      {
+        "time": 1508010399,
+        "content": "And where do you live?",
+        "type": "sent"
+      },
+      {
+        "time": 1508113399,
+        "content": "I live near the city center",
+        "type": "received"
+      },
+      {
+        "time": 1508155399,
+        "content": "Nice to meet you",
+        "type": "received"
+      },
+      {
+        "time": 1508220399,
+        "content": "I am really glad to have met you :)",
+        "type": "sent"
+      }
+    ]
+  },
+  {
+    "name": "Amy",
+    "status": "I love oranges!",
+    "messages": [
+      {
+        "time": 1507900399,
+        "content": "Hi mate!",
+        "type": "received"
+      },
+      {
+        "time": 1507891265,
+        "content": "Hey what`s up?",
+        "type": "sent"
+      },
+      {
+        "time": 1508020379,
+        "content": "Need your help with my essay",
+        "type": "received"
+      },
+      {
+        "time": 1508143399,
+        "content": "Okay, what is the theme?",
+        "type": "sent"
+      },
+      {
+        "time": 1508210300,
+        "content": "Oranges.. :)",
+        "type": "received"
+      },
+      {
+        "time": 1508331399,
+        "content": "wow, oranges, really?",
+        "type": "sent"
+      }
+    ]
+  },
+  {
+    "name": "Jack",
+    "status": "Hello, I'm Jack",
+    "messages": [
+      {
+        "time": 1507899399,
+        "content": "Where are you?",
+        "type": "received"
+      },
+      {
+        "time": 1507900399,
+        "content": "At class, you?",
+        "type": "sent"
+      },
+      {
+        "time": 1507988399,
+        "content": "Finished with classes, meet in caffe later?",
+        "type": "received"
+      },
+      {
+        "time": 1507989399,
+        "content": "Sure, bring me the book please :)",
+        "type": "sent"
+      },
+      {
+        "time": 1507996399,
+        "content": "What book, I forgot",
+        "type": "received"
+      },
+      {
+        "time": 1508155399,
+        "content": "Microeconomy",
+        "type": "sent"
+      },
+      {
+        "time": 1508190399,
+        "content": "No problem! :)",
+        "type": "received"
+      },
+      {
+        "time": 1508210399,
+        "content": "See you..",
+        "type": "received"
+      },
+      {
+        "time": 1508220399,
+        "content": "Thanks, see you later",
+        "type": "sent"
+      }
+    ]
+  }
+]
