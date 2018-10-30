@@ -28,7 +28,7 @@ body {
 
 #aside {
 	display: flex;
-	justify-content: flex-start;
+	flex-direction: column;
 	width: 33%;
 	border-left: 2px solid #ddd;
 	border-bottom: 1px solid #ddd;
@@ -157,4 +157,33 @@ p {
 h6 {
 	font-weight: 700;
 	margin: 15px;
+}
+
+#user-image {
+	display: flex;
+	padding-bottom: 17px;
+	cursor: pointer;
+}
+
+#user-image img {
+	border-radius: 50%;
+	width: 65px;
+	height: 65px;
+	margin-left: 12px;
+	margin-top: 8px;
+}
+
+.user-data {
+
+}
+
+.user-name {
+	font-weight: 700;
+	margin-top: 25px;
+	margin-left: 10px;
+}
+
+.user-status {
+	margin-left: 10px;
+	color: gray;
 }
