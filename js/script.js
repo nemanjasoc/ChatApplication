@@ -1,12 +1,12 @@
 var data = [];
 
-var myRequest = new XMLHttpRequest();
-myRequest.open("GET", "json/conversations.json", true);
-myRequest.onload = function() {
-	data = JSON.parse(myRequest.responseText);
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "json/conversations.json", true);
+xhr.onload = function() {
+	data = JSON.parse(xhr.responseText);
 	showUsers();
 }
-myRequest.send();
+xhr.send();
 
 function showUsers() {
 	var aside = document.getElementById("aside");
@@ -15,7 +15,7 @@ function showUsers() {
 		var user = data[i];
 		
 		aside.innerHTML += '<div class="user-content" id="user-content-'+ i +'" onclick="showUserMessages('+ i +')">' +
-								'<img src="img/'+ user.name +'.jpg">' +
+								'<img src="img/'+ user.name.toLowerCase() +'.jpg">' +
 								'<div class="user-data">' + 
 									'<div class="user-name">' + user.name +'</div>' +
 									'<div class="user-status">'+ user.status +'</div>' +
@@ -54,17 +54,15 @@ function showUserMessages(currentUser) {
 		var classType = "";
 
 		if (messagesType == 'received') {
-			classType = 'received'
+			classType = 'received';
 		} else {
-			classType = 'sent'
+			classType = 'sent';
 		}
 		
-		messagesContent.innerHTML +=`<div class="messages-type">` +
-										`<div class="messages-${classType}">` +
-											`<div class="message-${classType}-content">${message.content}</div>` +
-											`<div class="message-${classType}-date">` + new Date(message.time).toLocaleTimeString() +`</div>` +
-										`</div>` +
-									`</div>`													
+		messagesContent.innerHTML += `<div class="messages-${classType}">` +
+										`<div class="message-${classType}-content">${message.content}</div>` +
+										`<div class="message-${classType}-date">` + new Date(message.time).toLocaleTimeString() +`</div>` +
+									`</div>`;
 	}
 }
 
@@ -74,4 +72,19 @@ function resetUserMessages() {
 
 function sendMessage() {
 	var inputValue = document.getElementById("text-message").value;
+
+	var newMessages = data;
+	// todo
+	var newData = JSON.stringify(newMessages);
+
+    xhr = new XMLHttpRequest();
+    xhr.open("POST", "json/conversations.json", true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.onreadystatechange = function () { 
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            data = JSON.parse(xhr.responseText);
+            showUserMessages();
+        }
+    }    
+    xhr.send(newData);
 }
