@@ -23,10 +23,10 @@
 		</div>
 		<div class="main-content">
 			<div id="messages-content"></div>
-			<div class="input">
+			<form onsubmit="sendMessage()" action="javascript:void(0);">
 				<input type="text" name="message" id="text-message">
-				<button type="button" onclick="sendMessage()">Send</button>
-			</div>
+				<button type="submit">Send</button>
+			</form>
 		</div>
 	</div>
 

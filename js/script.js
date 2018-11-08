@@ -98,4 +98,6 @@ function sendMessage() {
 		}
 	}    
 	xhr.send(JSON.stringify(obj));
+
+	document.getElementById("text-message").value = '';
 }
