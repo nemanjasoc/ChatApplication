@@ -40,6 +40,7 @@ body {
 h6 {
 	font-weight: 700;
 	margin: 15px;
+	font-size: 16px;
 }
 
 .user-content {
@@ -61,19 +62,17 @@ h6 {
 	margin-top: 8px;
 }
 
-.user-data {
-
-}
-
 .user-name {
 	font-weight: 700;
 	margin-top: 25px;
 	margin-left: 10px;
+	font-size: 15px;
 }
 
 .user-status {
 	margin-left: 10px;
 	color: gray;
+	font-size: 15px;
 }
 
 .main-content {
@@ -82,96 +81,75 @@ h6 {
 }
 
 #messages-content {
-	max-width: 1500px;
-	border-left: 2px solid #eee;
-	border-bottom: 2px solid #eee;
 	height: 525px;
 	background: #eee;
-	width: 100%;
 	display: flex;
 	flex-direction: column;
-	overflow-y: scroll;
-	padding: 10px 50px 15px 50px; 
+	overflow: scroll;
+	padding: 10px 130px 15px 130px; 
 }
 
-.messages-received {
-	background: #068ccd;
-    max-width: 250px;
-    border-radius: 15px;
-    position: relative;
-    margin-right: auto;
-    margin-bottom: 15px;
-    margin-top: 10px; 
-}
-
-.messages-received:after {
-    position: absolute;
-    content: '';
-    width: 0;
-    height: 0;
-    left: 2px;
-    bottom: -13px;
-    border: 10px solid;
-    border-color: #068ccd transparent transparent #068ccd;
-}
-
-.message-received-content {
-	text-align: end;
-	padding-right: 15px;
-	padding-left: 15px;
-	font-size: 17px;
-}
-
-.message-received-date {
-	text-align: end;
-	padding-right: 15px;
-	padding-left: 15px;
-	font-size: 17px;
-}
-
+.messages-received,
 .messages-sent {
 	background: #068ccd;
 	max-width: 250px;
 	border-radius: 15px;
-	position: relative;
-	margin-left: auto;
+	position: relative;  
 	margin-bottom: 15px;
-	margin-top: 10px;  
+	margin-top: 10px; 
+}
+
+.messages-received {
+	margin-right: auto;
+}
+
+.messages-received:after {
+	position: absolute;
+	content: '';
+	width: 0;
+	height: 0;
+	left: 2px;
+	bottom: -13px;
+	border: 10px solid;
+	border-color: #068ccd transparent transparent #068ccd;
+}
+
+.message-received-content,
+.message-received-date {
+	text-align: end;
+	padding-right: 17px;
+	padding-left: 17px;
+	font-size: 15px;
+}
+
+.messages-sent {
+	margin-left: auto; 
 }
 
 .messages-sent:after {
-    position: absolute;
-    content: '';
-    width: 0;
-    height: 0;
-    right: 2px;
-    bottom: -13px;
-    border: 10px solid;
-    border-color: #068ccd #068ccd  transparent transparent;
+	position: absolute;
+	content: '';
+	width: 0;
+	height: 0;
+	right: 2px;
+	bottom: -13px;
+	border: 10px solid;
+	border-color: #068ccd #068ccd  transparent transparent;
 }
 
-.message-sent-content {
-    display: flex;
-    justify-content: flex-start;
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 17px; 
-}
-
+.message-sent-content,
 .message-sent-date {
 	display: flex;
-    justify-content: flex-start;
-    padding-left: 15px;
-    padding-right: 15px;
-    font-size: 17px;
+	justify-content: flex-start;
+	padding-left: 17px;
+	padding-right: 17px;
+	font-size: 15px; 
 }
 
 .input {
 	display: flex;
 	height: 40px;
 	background: #068ccd;
-	max-width: 1500px;
-	width: 100%;
 }
 
 input[type=text] {
@@ -181,17 +159,13 @@ input[type=text] {
 	margin-right: 5px;
 	margin-top: 8px;
 	border-radius: 5px 0px 0px 5px;
-}
-
-#text-message {
-	
+	padding-left: 5px;
 }
 
 button[type=button] {
 	border: 1px solid white;
 	color: #068ccd;
 	height: 25px;
-	align-items: center;
 	margin-top: 8px;
 	margin-right: 46px;
 	width: 45px;
@@ -271,4 +245,147 @@ p {
 .fa-twitter:hover,
 .fa-facebook:hover {
 	background: silver;
+}
+
+/*Media query*/
+
+@media screen and (max-width: 1200px) {
+	h6 {
+		font-size: 16px;
+	}
+
+	.user-content img {
+		width: 60px;
+		height: 60px;
+	}
+
+	.user-name,
+	.user-status,
+	.message-received-content,
+	.message-received-date,
+	.message-sent-content,
+	.message-sent-date {
+		font-size: 14px;
+	}
+
+	#messages-content {
+		padding: 10px 80px 15px 80px; 
+	}
+
+	.messages-received,
+	.messages-sent {
+		max-width: 240px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	h6 {
+		font-size: 16px;
+	}
+
+	.user-content img {
+		width: 55px;
+		height: 55px;
+	}
+
+	.user-name,
+	.user-status,
+	.message-received-content,
+	.message-received-date,
+	.message-sent-content,
+	.message-sent-date {
+		font-size: 13px;
+	}
+
+	#messages-content {
+		padding: 10px 50px 15px 50px; 
+	}
+
+	.messages-received,
+	.messages-sent {
+		max-width: 220px;
+	}
+
+	.messages-received:after {
+		bottom: -10px;
+		border: 9px solid;
+		border-color: #068ccd transparent transparent #068ccd;
+	}
+
+	.messages-sent:after {
+		bottom: -10px;
+		border: 9px solid;
+		border-color: #068ccd #068ccd  transparent transparent;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	h6 {
+		font-size: 15px;
+	}
+
+	.user-content img {
+		width: 50px;
+		height: 50px;
+	}
+
+	.user-name,
+	.user-status,
+	.message-received-content,
+	.message-received-date,
+	.message-sent-content,
+	.message-sent-date {
+		font-size: 12px;
+	}
+
+	#messages-content {
+		padding: 10px 20px 15px 20px; 
+	}
+
+	.messages-received,
+	.messages-sent {
+		max-width: 200px;
+	}
+
+	.messages-received:after {
+		bottom: -9px;
+		border: 8px solid;
+		border-color: #068ccd transparent transparent #068ccd;
+	}
+
+	.messages-sent:after {
+		bottom: -9px;
+		border: 8px solid;
+		border-color: #068ccd #068ccd  transparent transparent;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	#messages-content {
+		padding: 10px 10px 15px 10px; 
+	}
+
+	.messages-received,
+	.messages-sent {
+		max-width: 180px;
+	}
+
+	.messages-received:after {
+		bottom: -8px;
+		border: 8px solid;
+		border-color: #068ccd transparent transparent #068ccd;
+	}
+
+	.message-received-content,
+	.message-received-date,
+	.message-sent-content,
+	.message-sent-date {
+		font-size: 10px;
+	}
+
+	.messages-sent:after {
+		bottom: -8px;
+		border: 8px solid;
+		border-color: #068ccd #068ccd  transparent transparent;
+	}
 }

@@ -1,9 +1,10 @@
 var data = [];
+var userIndex;
 
 var xhr = new XMLHttpRequest();
-xhr.open("GET", "json/conversations.json", true);
+xhr.open("GET", "http://localhost:3000/chat/1", true);
 xhr.onload = function() {
-	data = JSON.parse(xhr.responseText);
+	data = JSON.parse(xhr.responseText).data;
 	showUsers();
 }
 xhr.send();
@@ -20,7 +21,7 @@ function showUsers() {
 									'<div class="user-name">' + user.name +'</div>' +
 									'<div class="user-status">'+ user.status +'</div>' +
 								'</div>' +
-							'</div>'
+							'</div>';
 	}
 }
 
@@ -28,7 +29,6 @@ function showUserMessages(currentUser) {
 	console.log("currentUser: ", currentUser);
 	var selectAll = document.querySelectorAll(".user-content");
 	var messagesContent = document.getElementById("messages-content");
-	var user;
 
 	for (var i = 0; i < selectAll.length; i++) {
 		var select = selectAll[i];
@@ -39,21 +39,19 @@ function showUserMessages(currentUser) {
 	}
 	
 	document.getElementById(`user-content-${currentUser}`).classList.add("active");
-	
-	for (var i = 0; i < data.length; i++) {
-		if (i == currentUser) {
-			user = data[i];
-		}
-	}
+
+	var user = data[currentUser];
+	userIndex = currentUser;
+	console.log("global: ", userIndex);
 
 	resetUserMessages();
 
-	for (var j = 0; j < user.messages.length; j++) {
-		var message = user.messages[j];
-		var messagesType = message.type;
+	for (var i = 0; i < user.messages.length; i++) {
+		var message = user.messages[i];
+		var messageType = message.type;
 		var classType = "";
 
-		if (messagesType == 'received') {
+		if (messageType == 'received') {
 			classType = 'received';
 		} else {
 			classType = 'sent';
@@ -64,27 +62,40 @@ function showUserMessages(currentUser) {
 										`<div class="message-${classType}-date">` + new Date(message.time).toLocaleTimeString() +`</div>` +
 									`</div>`;
 	}
+
+	updateScroll();
 }
 
 function resetUserMessages() {
 	document.getElementById("messages-content").innerHTML = '';
 }
 
+function updateScroll(){
+	var element = document.getElementById("messages-content");
+	element.scrollTop = element.scrollHeight;
+}
+
 function sendMessage() {
 	var inputValue = document.getElementById("text-message").value;
 
-	var newMessages = data;
-	// todo
-	var newData = JSON.stringify(newMessages);
+	data[userIndex].messages.push({
+		"time": Date.now(),
+		"content": inputValue,
+		"type": "sent"
+	});
 
-    xhr = new XMLHttpRequest();
-    xhr.open("POST", "json/conversations.json", true);
-    xhr.setRequestHeader("Content-type", "application/json");
-    xhr.onreadystatechange = function () { 
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            data = JSON.parse(xhr.responseText);
-            showUserMessages();
-        }
-    }    
-    xhr.send(newData);
+	var obj = {
+		data: data
+	};
+
+	xhr = new XMLHttpRequest();
+	xhr.open("PUT", "http://localhost:3000/chat/1", true);
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.onreadystatechange = function () {
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			data = JSON.parse(xhr.responseText).data;
+			showUserMessages(userIndex);
+		}
+	}    
+	xhr.send(JSON.stringify(obj));
 }
