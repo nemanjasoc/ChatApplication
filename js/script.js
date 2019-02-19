@@ -1,13 +1,18 @@
 var data = [];
 var userIndex;
 
-var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://localhost:3000/chat/1", true);
-xhr.onload = function() {
-	data = JSON.parse(xhr.responseText).data;
-	showUsers();
+function getUserData() {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			data = JSON.parse(this.responseText);
+			showUsers();
+		}
+	}
+	xhttp.open("GET", "json/conversations.json", true);
+	xhttp.send();
 }
-xhr.send();
+console.log("data: ", data);
 
 function showUsers() {
 	var aside = document.getElementById("aside");
@@ -44,30 +49,48 @@ function showUserMessages(currentUser) {
 	userIndex = currentUser;
 	console.log("global: ", userIndex);
 
-	resetUserMessages();
-
 	for (var i = 0; i < user.messages.length; i++) {
 		var message = user.messages[i];
-		var messageType = message.type;
-		var classType = "";
-
-		if (messageType == 'received') {
-			classType = 'received';
-		} else {
-			classType = 'sent';
-		}
 		
-		messagesContent.innerHTML += `<div class="messages-${classType}">` +
-										`<div class="message-${classType}-content">${message.content}</div>` +
-										`<div class="message-${classType}-date">` + new Date(message.time).toLocaleTimeString() +`</div>` +
-									`</div>`;
+		messagesContent.innerHTML += getMessageTemplate(message);
 	}
 
 	updateScroll();
 }
 
-function resetUserMessages() {
-	document.getElementById("messages-content").innerHTML = '';
+function getMessageTemplate(message) {
+	var messageType = message.type;
+	var classType = "";
+
+	if (messageType == 'received') {
+		classType = 'received';
+	} else {
+		classType = 'sent';
+	}
+
+	var template = `<div class="messages-${classType}">` +
+						`<div class="message-${classType}-content">${message.content}</div>` +
+						`<div class="message-${classType}-date">` + new Date(message.time).toLocaleTimeString() +`</div>` +
+					`</div>`;
+			   
+	return template;
+}
+
+function sendMessage() {
+	var inputElement = document.getElementById('text-message');
+	var messagesContent = document.getElementById('messages-content');
+
+	var sentMessage = {
+		"time": new Date().getTime(),
+		"content": inputElement.value,
+		"type": "sent"
+	};
+
+	messagesContent.innerHTML = messagesContent.innerHTML + getMessageTemplate(sentMessage);
+	
+	inputElement.value = "";
+
+	updateScroll();
 }
 
 function updateScroll(){
@@ -75,29 +98,4 @@ function updateScroll(){
 	element.scrollTop = element.scrollHeight;
 }
 
-function sendMessage() {
-	var inputValue = document.getElementById("text-message").value;
-
-	data[userIndex].messages.push({
-		"time": Date.now(),
-		"content": inputValue,
-		"type": "sent"
-	});
-
-	var obj = {
-		data: data
-	};
-
-	xhr = new XMLHttpRequest();
-	xhr.open("PUT", "http://localhost:3000/chat/1", true);
-	xhr.setRequestHeader("Content-type", "application/json");
-	xhr.onreadystatechange = function () {
-		if (xhr.readyState == 4 && xhr.status == 200) {
-			data = JSON.parse(xhr.responseText).data;
-			showUserMessages(userIndex);
-		}
-	}    
-	xhr.send(JSON.stringify(obj));
-
-	document.getElementById("text-message").value = '';
-}
+getUserData();
