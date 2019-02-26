@@ -4,13 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^4.0.0",
+<<<<<<< HEAD
+=======
+    "express": "^4.16.4",
+>>>>>>> 4d47df171a7185a433b8823007d868908288a11b
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1"
   }
